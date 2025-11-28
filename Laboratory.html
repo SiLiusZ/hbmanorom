@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แบบสัมภาษณ์ กลุ่มที่ 4: Laboratory</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Opun+Sans:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Opun Sans', sans-serif;
+            background-color: #f4f6f9;
+        }
+        .container {
+            max-width: 800px;
+            margin-top: 40px;
+            margin-bottom: 60px;
+        }
+        .interview-form {
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .form-section {
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 20px;
+        }
+        .form-section:last-child {
+            border-bottom: none;
+        }
+        h2 {
+            border-left: 5px solid #17a2b8; /* สีฟ้าสำหรับ Laboratory */
+            padding-left: 15px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        .question-label {
+            font-weight: 600;
+            margin-top: 15px;
+        }
+        .attribute-label {
+            font-style: italic;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header class="text-center mb-4">
+        <h1 class="text-info fw-bold">แบบสัมภาษณ์กลุ่มที่ 4</h1>
+        <p class="lead text-info">สำหรับ **Laboratory** (เจ้าหน้าที่ห้องปฏิบัติการ)</p>
+    </header>
+
+    <div class="interview-form">
+        <form id="interview-form-4" onsubmit="return submitForm(event, 'Laboratory');">
+            
+            <div class="form-section">
+                <h2 class="text-info">🧪 Knowledge and Practice</h2>
+                
+                <div class="mb-3">
+                    <label class="question-label">1. ท่านทราบระบบเฝ้าระวัง ระบบรายงาน 506 หรือไม่ ทราบจากที่ไหนอย่างไร</label>
+                    <textarea class="form-control" rows="3" name="q1_1" placeholder="โปรดระบุแหล่งที่มาของข้อมูลและความเข้าใจในระบบรายงานที่เกี่ยวข้อง"></textarea>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="question-label">2. อธิบายบทบาทของท่านในการดำเนินงานเฝ้าระวังโรค ไวรัสตับอักเสบบี (เน้นการตรวจหา HBsAg และ IgM anti-HBc)</label>
+                    <textarea class="form-control" rows="3" name="q1_2" placeholder="โปรดอธิบายขั้นตอนการตรวจ การเก็บตัวอย่าง หรือการยืนยันผล"></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label class="question-label">3. ท่านมีการรายงานผลการตรวจ HBsAg/IgM anti-HBc อย่างไร (เน้นความรวดเร็วและความชัดเจนในการแจ้งผลบวกจำเพาะ)</label>
+                    <textarea class="form-control" rows="3" name="q1_3" placeholder="โปรดอธิบายวิธีการแจ้งผลไปยังคลินิก/แผนกที่เกี่ยวข้อง และความรวดเร็วที่ทำได้"></textarea>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2 class="text-success">✨ Qualitative Attributes</h2>
+                
+                <div class="mb-3">
+                    <label class="question-label">4. <span class="attribute-label">(Stability)</span> ท่านคิดว่ามีอุปกรณ์/น้ำยาเพียงพอในการดำเนินงานในส่วนที่ท่านเกี่ยวข้องหรือไม่ และต้องการการสนับสนุนด้านใดเพื่อให้สามารถปฏิบัติงานได้อย่างต่อเนื่องและมีประสิทธิภาพ</label>
+                    <textarea class="form-control" rows="3" name="q2_1" placeholder="โปรดระบุปัญหาด้านความมั่นคงของอุปกรณ์/น้ำยา และข้อเสนอแนะในการสนับสนุน"></textarea>
+                </div>
+            </div>
+            
+            <button type="submit" class="btn btn-info btn-lg w-100 mt-4 text-white" >ส่งแบบสัมภาษณ์</button>
+        </form>
+    </div>
+
+    <footer class="text-center mt-4 p-3 border-top">
+        <p class="text-muted small">&copy; 2025 โครงการประเมินระบบเฝ้าระวัง</p>
+    </footer>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+<script src="https://www.gstatic.com/firebasejs/9.1.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.1.1/firebase-firestore-compat.js"></script>
+
+<script>
+    // 1. Firebase Configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyDg9BwsZQluFZM06IESIGUj8UaOuV58U3M",
+      authDomain: "hbmanorom.firebaseapp.com",
+      projectId: "hbmanorom",
+      storageBucket: "hbmanorom.firebasestorage.app",
+      messagingSenderId: "153859735466",
+      appId: "1:153859735466:web:bb4e9371d656fac224f5d3",
+      measurementId: "G-ES6N7PFD1D"
+    };
+
+    // 2. Initialize Firebase และ Firestore
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+    
+    function submitForm(event, groupName) {
+        event.preventDefault(); 
+        
+        const form = event.target;
+        const formData = new FormData(form);
+        
+        // แปลง FormData เป็น Object
+        const data = {};
+        for (let [key, value] of formData.entries()) {
+            data[key] = value;
+        }
+        data.group = groupName;
+        data.timestamp = firebase.firestore.FieldValue.serverTimestamp();
+
+        // แสดงสถานะการส่ง
+        const submitButton = form.querySelector('button[type="submit"]');
+        submitButton.textContent = 'กำลังส่งข้อมูล...';
+        submitButton.disabled = true;
+
+        db.collection("submissions").add(data)
+            .then(() => {
+                console.log("Document successfully written!");
+                alert("ส่งข้อมูลสำเร็จ! ขอบคุณค่ะ");
+                window.location.href = 'thank_you.html';
+            })
+            .catch((error) => {
+                console.error("Error writing document: ", error);
+                alert("เกิดข้อผิดพลาดในการส่งข้อมูล! โปรดตรวจสอบการตั้งค่า Firestore Rules");
+                submitButton.textContent = 'ส่งแบบสัมภาษณ์';
+                submitButton.disabled = false;
+            });
+        return false;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - สรุปข้อมูลการประเมินระบบเฝ้าระวัง</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Opun+Sans:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Opun Sans', sans-serif;
+            background-color: #f4f6f9;
+        }
+        .container-fluid {
+            padding: 20px;
+        }
+        .summary-card {
+            border-left: 5px solid;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+        .card-1 { border-left-color: #198754; background-color: #d1e7dd; }
+        .card-2 { border-left-color: #dc3545; background-color: #f8d7da; }
+        .card-3 { border-left-color: #ffc107; background-color: #fff3cd; }
+        .card-4 { border-left-color: #0dcaf0; background-color: #cff4fc; }
+        
+        .table thead th {
+            background-color: #0d6efd;
+            color: white;
+        }
+        .badge-status {
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container-fluid">
+    <header class="mb-4 d-flex justify-content-between align-items-center">
+        <h1 class="display-5 text-primary fw-bold">📊 แผงควบคุมผู้ดูแลระบบ (Admin Dashboard)</h1>
+        <button id="download-button" class="btn btn-lg btn-success" onclick="downloadAllSubmissions(this)">
+            ⬇️ ดาวน์โหลดข้อมูลทั้งหมด (CSV)
+        </button>
+    </header>
+
+    <p class="lead">สรุปข้อมูลการตอบแบบสัมภาษณ์โครงการประเมินระบบเฝ้าระวัง</p>
+
+    <div class="row" id="summary-cards">
+        <div class="col-md-3">
+            <div class="summary-card card-1">
+                <h5 class="text-success">กลุ่มที่ 1: Policy Maker</h5>
+                <h2 class="fw-bold" id="count-group-1">0</h2>
+                <p class="mb-0 text-success">จำนวนผู้ตอบทั้งหมด</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="summary-card card-2">
+                <h5 class="text-danger">กลุ่มที่ 2: Data Management</h5>
+                <h2 class="fw-bold" id="count-group-2">0</h2>
+                <p class="mb-0 text-danger">จำนวนผู้ตอบทั้งหมด</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="summary-card card-3">
+                <h5 class="text-warning">กลุ่มที่ 3: HCW & Med. Rec.</h5>
+                <h2 class="fw-bold" id="count-group-3">0</h2>
+                <p class="mb-0 text-warning">จำนวนผู้ตอบทั้งหมด</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="summary-card card-4">
+                <h5 class="text-info">กลุ่มที่ 4: Laboratory</h5>
+                <h2 class="fw-bold" id="count-group-4">0</h2>
+                <p class="mb-0 text-info">จำนวนผู้ตอบทั้งหมด</p>
+            </div>
+        </div>
+    </div>
+    
+    <hr>
+    
+    <h2 class="mt-4 mb-3">รายการข้อมูลที่ส่งล่าสุด (Latest Submissions)</h2>
+    <div class="table-responsive bg-white p-3 rounded shadow-sm">
+        <table class="table table-hover align-middle">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>กลุ่มผู้ตอบ</th>
+                    <th>คำตอบ Q1 (ย่อ)</th>
+                    <th>วันที่/เวลาส่ง</th>
+                    <th>สถานะ</th>
+                    <th>ดำเนินการ</th>
+                </tr>
+            </thead>
+            <tbody id="data-table-body">
+                <tr class="text-muted">
+                    <td colspan="6" class="text-center">รอการเชื่อมต่อ Firebase เพื่อโหลดข้อมูลจริง</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <footer class="text-center mt-5 p-3 border-top">
+        <p class="text-muted small">&copy; 2025 Admin Control Panel</p>
+    </footer>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+<script src="https://www.gstatic.com/firebasejs/9.1.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.1.1/firebase-firestore-compat.js"></script>
+
+<script>
+    // 1. Firebase Configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyDg9BwsZQluFZM06IESIGUj8UaOuV58U3M",
+      authDomain: "hbmanorom.firebaseapp.com",
+      projectId: "hbmanorom",
+      storageBucket: "hbmanorom.firebasestorage.app",
+      messagingSenderId: "153859735466",
+      appId: "1:153859735466:web:bb4e9371d656fac224f5d3",
+      measurementId: "G-ES6N7PFD1D"
+    };
+
+    // 2. Initialize Firebase และ Firestore
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    // -----------------------------------------------------------
+    // ********** ฟังก์ชันสำหรับดาวน์โหลดข้อมูลทั้งหมด (Export CSV) **********
+    // -----------------------------------------------------------
+
+    /**
+     * ดึงข้อมูลทั้งหมดจาก Firestore และแปลงเป็น CSV แล้วเริ่มดาวน์โหลด
+     * @param {HTMLElement} buttonElement - ปุ่มที่ถูกคลิก
+     */
+    async function downloadAllSubmissions(buttonElement) {
+        buttonElement.disabled = true;
+        const originalText = buttonElement.textContent;
+        buttonElement.textContent = 'กำลังโหลดข้อมูล...';
+
+        try {
+            // ดึงข้อมูลทั้งหมด
+            const snapshot = await db.collection("submissions").get();
+            const allDocs = [];
+            let allKeys = new Set(['ID', 'group', 'timestamp']); // กำหนดคีย์พื้นฐาน
+
+            snapshot.forEach(doc => {
+                const data = doc.data();
+                // 1. รวบรวม Keys ทั้งหมด
+                Object.keys(data).forEach(key => allKeys.add(key));
+                // 2. เก็บข้อมูล
+                allDocs.push({ ID: doc.id, ...data });
+            });
+
+            if (allDocs.length === 0) {
+                alert('ไม่พบข้อมูลสำหรับดาวน์โหลด');
+                return;
+            }
+
+            // 3. แปลงเป็น CSV
+            const csv = convertToCsv(allDocs, Array.from(allKeys));
+            
+            // 4. เริ่มดาวน์โหลดไฟล์
+            const filename = `submissions_${new Date().toISOString().slice(0, 10)}.csv`;
+            const blob = new Blob(["\ufeff", csv], { type: 'text/csv;charset=utf-8;' }); // \ufeff คือ BOM สำหรับ Excel ไทย
+            
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = filename;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            alert(`ดาวน์โหลดสำเร็จ: ${allDocs.length} รายการ`);
+
+        } catch (error) {
+            console.error("Error during data export:", error);
+            alert("เกิดข้อผิดพลาดในการดาวน์โหลด: " + error.message);
+        } finally {
+            buttonElement.textContent = originalText;
+            buttonElement.disabled = false;
+        }
+    }
+
+    /**
+     * Helper function: แปลง Array of Objects เป็น CSV string
+     * @param {Array<Object>} objArray - ข้อมูล
+     * @param {Array<string>} headers - หัวตาราง (Keys)
+     */
+    function convertToCsv(objArray, headers) {
+        let csv = '';
+        const escapeCsv = (val) => {
+            if (val === null || val === undefined) return '';
+            let str = String(val);
+            // จัดการ Timestamp และ Object/Array
+            if (val instanceof firebase.firestore.Timestamp) {
+                return val.toDate().toLocaleString('th-TH');
+            }
+            if (typeof val === 'object' && val !== null) {
+                 return JSON.stringify(val).replace(/"/g, '""'); // แปลง Object/Array เป็น String แล้ว Escape Quotes
+            }
+            // Escape Quotes และใส่ Double Quotes ถ้ามี comma หรือขึ้นบรรทัดใหม่
+            if (str.includes(',') || str.includes('\n') || str.includes('"')) {
+                str = '"' + str.replace(/"/g, '""') + '"';
+            }
+            return str;
+        };
+
+        // 1. หัวตาราง (Header Row)
+        csv += headers.map(h => escapeCsv(h)).join(',') + '\n';
+
+        // 2. แถวข้อมูล (Data Rows)
+        objArray.forEach(obj => {
+            const row = headers.map(header => {
+                let value = obj[header];
+                return escapeCsv(value);
+            }).join(',');
+            csv += row + '\n';
+        });
+
+        return csv;
+    }
+
+
+    // -----------------------------------------------------------
+    // ********** ฟังก์ชันสำหรับแสดงผล Dashboard (เดิม) **********
+    // -----------------------------------------------------------
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const tableBody = document.getElementById('data-table-body');
+        
+        db.collection("submissions").orderBy("timestamp", "desc").onSnapshot(snapshot => {
+            
+            tableBody.innerHTML = ''; 
+            const counts = { 'Policy Maker': 0, 'Data Management': 0, 'Health Care Worker': 0, 'Laboratory': 0 };
+
+            snapshot.forEach(doc => {
+                const data = doc.data();
+                const docId = doc.id;
+
+                // 1. นับจำนวนผู้ตอบแต่ละกลุ่ม
+                if (counts.hasOwnProperty(data.group)) {
+                    counts[data.group]++;
+                }
+
+                // 2. สร้างแถวตาราง
+                const row = tableBody.insertRow();
+                
+                // กำหนดสีตามกลุ่ม
+                let badgeClass = '';
+                if (data.group === 'Policy Maker') badgeClass = 'bg-success';
+                else if (data.group === 'Data Management') badgeClass = 'bg-danger';
+                else if (data.group === 'Health Care Worker') badgeClass = 'bg-warning text-dark';
+                else if (data.group === 'Laboratory') badgeClass = 'bg-info';
+
+                // จัดรูปแบบวันที่
+                const date = data.timestamp ? data.timestamp.toDate().toLocaleString('th-TH') : 'กำลังโหลด...';
+                
+                // ใช้คำตอบแรก (q1_1) เป็นตัวอย่างคำตอบย่อ
+                const q1_snippet = data.q1_1 ? data.q1_1.substring(0, 30) + '...' : 'N/A';
+
+                row.innerHTML = `
+                    <td>${docId.substring(0, 5)}...</td>
+                    <td><span class="badge ${badgeClass} badge-status">${data.group}</span></td>
+                    <td>${q1_snippet}</td>
+                    <td>${date}</td>
+                    <td><span class="badge bg-success">เสร็จสมบูรณ์</span></td>
+                    <td><button class="btn btn-sm btn-outline-primary" 
+                        onclick="window.location.href='submission_detail.html?id=' + '${docId}'">
+                        ดูรายละเอียด
+                    </button></td>
+                `;
+            });
+            
+            // 3. อัปเดตตัวเลขสรุป
+            document.getElementById('count-group-1').textContent = counts['Policy Maker'];
+            document.getElementById('count-group-2').textContent = counts['Data Management'];
+            document.getElementById('count-group-3').textContent = counts['Health Care Worker'];
+            document.getElementById('count-group-4').textContent = counts['Laboratory'];
+
+            if (snapshot.size === 0) {
+                 tableBody.innerHTML = '<tr class="text-muted"><td colspan="6" class="text-center">ยังไม่มีข้อมูลใน Firestore.</td></tr>';
+            }
+        });
+    });
+</script>
+</body>
+</html>
