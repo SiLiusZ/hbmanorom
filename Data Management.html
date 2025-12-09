@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>แบบสัมภาษณ์ กลุ่มที่ 2: Data Management</title>
     
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" xintegrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -41,6 +41,12 @@
             margin-bottom: 20px;
             font-weight: 700;
         }
+        h4.fw-bold { /* สำหรับหัวข้อรอง Usefulness, Simplicity etc. */
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px !important;
+        }
         .question-label {
             font-weight: 600;
             margin-top: 15px;
@@ -51,6 +57,9 @@
             padding-left: 10px;
             margin-bottom: 10px;
         }
+        .sub-question .question-label {
+            margin-top: 5px; /* ลดระยะห่างคำถามย่อย */
+        }
     </style>
 </head>
 <body>
@@ -58,7 +67,7 @@
 <div class="container">
     <header class="text-center mb-4">
         <h1 class="text-danger fw-bold">แบบสัมภาษณ์กลุ่มที่ 2</h1>
-        <p class="lead text-danger">สำหรับ **Data Management** (เจ้าหน้าที่ระบาดวิทยา / ผู้จัดการข้อมูล)</p>
+        <p class="lead text-danger">สำหรับ **Data Management** (เจ้าหน้าที่ระบาดวิทยา)</p>
     </header>
 
     <div class="interview-form">
@@ -76,32 +85,29 @@
             <div class="form-section">
                 <h2 class="text-danger">⚙️ System Description</h2>
                 
-                <div class="mb-3">
-                    <label class="question-label">1. อธิบายขั้นตอนการดำเนินงานเฝ้าระวังโรค ไวรัสตับอักเสบบี ชนิดเฉียบพลัน</label>
+                <label class="question-label">อธิบายขั้นตอนการดำเนินงานเฝ้าระวังโรค ไวรัสตับอักเสบบี ชนิดเฉียบพลัน</label>
+                
+                <div class="sub-question">
+                    <label class="question-label">1. การวางระบบเฝ้าระวังโรคในโรงพยาบาลของท่าน ดำเนินการอย่างไร</label>
+                    <textarea class="form-control" rows="2" name="q2_1"></textarea>
+                </div>
+
+                <div class="sub-question">
+                    <label class="question-label">2. นิยามที่ใช้ในการรายงานโรคไวรัสตับอักเสบบี ชนิดเฉียบพลัน (รง.506) คืออะไร</label>
+                    <textarea class="form-control" rows="3" name="q2_2"></textarea>
+                </div>
+
+                <div class="sub-question">
+                    <label class="question-label">3. ขั้นตอนในการเฝ้าระวัง (เริ่มจากการเก็บข้อมูล การจัดการข้อมูล การวิเคราะห์ข้อมูล การควบคุมคุณภาพ การเผยแพร่ผลการเฝ้าระวัง)</label>
                     
-                    <div class="sub-question">
-                        <label class="question-label">1.1 การวางระบบเฝ้าระวังโรคในโรงพยาบาลของท่าน ดำเนินการอย่างไร</label>
-                        <textarea class="form-control" rows="2" name="q2_1_1"></textarea>
+                    <div class="ms-3 mt-2">
+                        <label class="question-label small">§ 3.1 การจัดการข้อมูล (อธิบายการดึงข้อมูล/การบันทึกข้อมูล/การเปลี่ยนแปลงข้อมูล): ท่านมีการตรวจสอบหรืออัปเดตรหัส ICD-10 ของผู้ป่วยไวรัสตับอักเสบเรื้อรัง ที่ถูกรายงานผิดเข้ามาในระบบ 506 หรือไม่ ทำอย่างไร</label>
+                        <textarea class="form-control" rows="3" name="q2_3_1"></textarea>
                     </div>
-
-                    <div class="sub-question">
-                        <label class="question-label">1.2 นิยามที่ใช้ในการรายงานโรคไวรัสตับอักเสบบี ชนิดเฉียบพลัน (รง.506) คืออะไร</label>
-                        <textarea class="form-control" rows="3" name="q2_1_2"></textarea>
-                    </div>
-
-                    <div class="sub-question">
-                        <label class="question-label">1.3 ขั้นตอนในการเฝ้าระวัง (เริ่มจากการเก็บข้อมูล การจัดการข้อมูล การวิเคราะห์ข้อมูล การควบคุมคุณภาพ การเผยแพร่ผลการเฝ้าระวัง)</label>
-                        
-                        <div class="ms-3 mt-2">
-                            <label class="question-label small">§ 1.3.2 การจัดการข้อมูล (อธิบายการดึงข้อมูล/การบันทึกข้อมูล/การเปลี่ยนแปลงข้อมูล)</label>
-                            <label class="question-label small d-block">ท่านมีการตรวจสอบหรืออัปเดตรหัส ICD-10 ของผู้ป่วยไวรัสตับอักเสบเรื้อรัง ที่ถูกรายงานผิดเข้ามาในระบบ 506 หรือไม่ ทำอย่างไร</label>
-                            <textarea class="form-control" rows="3" name="q2_1_3_2"></textarea>
-                        </div>
-                        
-                        <div class="ms-3 mt-3">
-                            <label class="question-label small">§ 1.3.5 มีกระบวนการตรวจสอบคุณภาพของข้อมูลในขั้นตอนใดบ้าง โดยใคร (เน้นการตรวจสอบความถูกต้องของรหัส ICD-10 และเกณฑ์ทางคลินิก)</label>
-                            <textarea class="form-control" rows="3" name="q2_1_3_5"></textarea>
-                        </div>
+                    
+                    <div class="ms-3 mt-3">
+                        <label class="question-label small">§ 3.2 มีกระบวนการตรวจสอบคุณภาพของข้อมูลในขั้นตอนใดบ้าง โดยใคร (เน้นการตรวจสอบความถูกต้องของรหัส ICD-10 และเกณฑ์ทางคลินิก)</label>
+                        <textarea class="form-control" rows="3" name="q2_3_2"></textarea>
                     </div>
                 </div>
             </div>
@@ -109,20 +115,66 @@
             <div class="form-section">
                 <h2 class="text-success">✨ Qualitative Attributes</h2>
                 
+                <h4 class="text-warning fw-bold">Usefulness (การใช้ประโยชน์)</h4>
+                
                 <div class="mb-3">
-                    <label class="question-label">1. Simplicity: การรายงานผู้ป่วย ไวรัสตับอักเสบบี ชนิดเฉียบพลัน มีความยากหรือง่ายอย่างไร ยากในขั้นตอนใด (เน้นปัญหาการจำแนกเฉียบพลัน/เรื้อรัง)</label>
-                    <textarea class="form-control" rows="3" name="q3_1"></textarea>
+                    <label class="question-label">1. ท่านได้รับผลตอบกลับ (Feedback) หรือทราบว่าข้อมูลการเฝ้าระวังที่ท่านจัดทำขึ้น ถูกนำไปใช้ในการตัดสินใจของฝ่ายบริหารหรือนำไปใช้ในการควบคุมโรค บ่อย เพียงใด</label>
+                    <textarea class="form-control" rows="3" name="q3_1_usefulness" placeholder="โปรดระบุความถี่และลักษณะของการได้รับ Feedback"></textarea>
                 </div>
                 
                 <div class="mb-3">
-                    <label class="question-label">2. Flexibility: หากมีการเปลี่ยนแปลงระบบการรายงาน เช่น เปลี่ยนนิยามเฝ้าระวังระหว่างเฉียบพลัน/เรื้อรัง หรือมีการปรับเปลี่ยนรหัส ICD-10 มีผลกระทบต่อระบบเฝ้าระวังอย่างไร เมื่อมีการเปลี่ยนแปลงท่านดำเนินการอย่างไร</label>
-                    <textarea class="form-control" rows="3" name="q3_2"></textarea>
+                    <label class="question-label">2. ท่านคิดว่าการวิเคราะห์ข้อมูลเฝ้าระวังที่ท่านทำขึ้น สามารถสะท้อนสถานการณ์การระบาดของโรคไวรัสตับอักเสบบีในพื้นที่รับผิดชอบได้อย่างชัดเจนและทันเวลาหรือไม่</label>
+                    <textarea class="form-control" rows="3" name="q3_2_usefulness" placeholder="โปรดระบุระดับความชัดเจนและความทันเวลาของการวิเคราะห์"></textarea>
+                </div>
+                
+                <h4 class="text-primary fw-bold">Simplicity (ความยากง่าย)</h4>
+
+                <div class="mb-3">
+                    <label class="question-label">1. Simplicity การรายงานผู้ป่วย ไวรัสตับอักเสบบี ชนิดเฉียบพลัน มีความยากหรือง่ายอย่างไร ยากในขั้นตอนใด</label>
+                    <textarea class="form-control" rows="3" name="q4_1_simplicity_1" placeholder="โปรดระบุปัญหาด้านความยากง่ายและขั้นตอนที่ยุ่งยาก"></textarea>
                 </div>
                 
                 <div class="mb-3">
-                    <label class="question-label">3. Acceptability: ท่านรู้สึกเห็นคุณค่าและอยากมีส่วนร่วมในงานด้านการรายงานผู้ป่วยโรคนี้หรือไม่ เพราะเหตุใด (ถ้าให้ทำงานนี้ต่อ ยังอยากทำต่อหรือไม่)</label>
-                    <textarea class="form-control" rows="3" name="q3_3"></textarea>
+                    <label class="question-label">2. ท่านคิดว่าการบูรณาการข้อมูลจากหลายแหล่ง (เช่น ห้องปฏิบัติการ, เวชระเบียน) เพื่อใช้ในการรายงานโรคนี้ มีความซับซ้อนในการจัดการข้อมูลอย่างไรบ้าง</label>
+                    <textarea class="form-control" rows="3" name="q4_1_simplicity_2" placeholder="โปรดระบุความซับซ้อนในการบูรณาการข้อมูล"></textarea>
                 </div>
+                
+                <h4 class="text-danger fw-bold">Acceptability (ความยอมรับ)</h4>
+
+                <div class="mb-3">
+                    <label class="question-label">1. Acceptability ท่านรู้สึกเห็นคุณค่าและอยากมีส่วนร่วมในงานด้านการรายงานผู้ป่วยโรคนี้หรือไม่ เพราะเหตุใด (ถ้าให้ทำงานนี้ต่อ ยังอยากทำต่อหรือไม่)</label>
+                    <textarea class="form-control" rows="3" name="q4_2_acceptability_1" placeholder="โปรดระบุทัศนคติ ความเห็นคุณค่า และความเต็มใจที่จะทำงานต่อ"></textarea>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="question-label">2. ท่านได้รับการสนับสนุนหรือการยอมรับจากเพื่อนร่วมงานหรือฝ่ายบริหารเกี่ยวกับความสำคัญของงานเฝ้าระวังโรคนี้เพียงใด</label>
+                    <textarea class="form-control" rows="3" name="q4_2_acceptability_2" placeholder="โปรดระบุระดับการสนับสนุนและการยอมรับที่ได้รับ"></textarea>
+                </div>
+                
+                <h4 class="text-info fw-bold">Flexibility (ความยืดหยุ่น)</h4>
+
+                <div class="mb-3">
+                    <label class="question-label">1. Flexibility หากมีการเปลี่ยนแปลงระบบการรายงาน เช่น เปลี่ยนนิยามเฝ้าระวังระหว่างเฉียบพลัน/เรื้อรัง หรือมีการปรับเปลี่ยนรหัส ICD-10 มีผลกระทบต่อระบบเฝ้าระวังอย่างไร เมื่อมีการเปลี่ยนแปลงท่านดำเนินการอย่างไร</label>
+                    <textarea class="form-control" rows="3" name="q4_3_flexibility_1" placeholder="โปรดระบุผลกระทบและแนวทางการดำเนินการเมื่อมีการเปลี่ยนแปลง"></textarea>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="question-label">2. เมื่อเกิดการเปลี่ยนแปลงนิยาม/รหัส ท่านต้องใช้เวลาในการปรับปรุงคู่มือการทำงาน หรือระบบการรายงานของท่านนานเพียงใด</label>
+                    <textarea class="form-control" rows="3" name="q4_3_flexibility_2" placeholder="โปรดระบุระยะเวลาที่ใช้ในการปรับปรุงระบบและคู่มือ"></textarea>
+                </div>
+                
+                <h4 class="text-secondary fw-bold">Stability (ความมั่นคง)</h4>
+
+                <div class="mb-3">
+                    <label class="question-label">1. หากระบบคอมพิวเตอร์ หรือโปรแกรม 506 ขัดข้อง หรือมีการเปลี่ยนตัวเจ้าหน้าที่ระบาดวิทยา ท่านมีมาตรการในการสำรองข้อมูล หรือถ่ายทอดงานอย่างไร เพื่อให้การรายงานไม่หยุดชะงัก</label>
+                    <textarea class="form-control" rows="3" name="q4_4_stability_1" placeholder="โปรดระบุมาตรการในการรับมือกับความขัดข้องของระบบ/การเปลี่ยนบุคลากร"></textarea>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="question-label">2. ท่านคิดว่าปริมาณงานเฝ้าระวังโรคติดต่อโดยรวมที่ท่านรับผิดชอบ มีความสมดุลกับจำนวนบุคลากรที่ปฏิบัติงานในส่วนนี้หรือไม่</label>
+                    <textarea class="form-control" rows="3" name="q4_4_stability_2" placeholder="โปรดระบุความสมดุลระหว่างปริมาณงานกับจำนวนบุคลากร"></textarea>
+                </div>
+
             </div>
             
             <button type="submit" class="btn btn-danger btn-lg w-100 mt-4" >ส่งแบบสัมภาษณ์</button>
@@ -135,7 +187,7 @@
 
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
 <script src="https://www.gstatic.com/firebasejs/9.1.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.1.1/firebase-firestore-compat.js"></script>

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>แบบสัมภาษณ์ กลุ่มที่ 1: Policy Maker</title>
     
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" xintegrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -41,9 +41,18 @@
             margin-bottom: 20px;
             font-weight: 700;
         }
+        h4.fw-bold { /* สำหรับหัวข้อรอง Simplicity, Acceptability etc. */
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 8px;
+            margin-bottom: 15px !important;
+        }
         .question-label {
             font-weight: 600;
             margin-top: 15px;
+        }
+        .attribute-label {
+            font-style: italic;
+            color: #6c757d;
         }
     </style>
 </head>
@@ -87,7 +96,7 @@
                         <label class="form-check-label" for="q2_1">2.1 การจัดตั้งระบบเฝ้าระวัง</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="2.2 กำลังคน" name="q2_2_checkbox" id="q2_2">
+                        <input class="form-check-input" type="checkbox" value="2.2 กำลังคน (เจ้าหน้าที่ระบาด เจ้าหน้าที่คัดกรอง เจ้าหน้าที่เวชระเบียน)" name="q2_2_checkbox" id="q2_2">
                         <label class="form-check-label" for="q2_2">2.2 กำลังคน (เจ้าหน้าที่ระบาด เจ้าหน้าที่คัดกรอง เจ้าหน้าที่เวชระเบียน)</label>
                     </div>
                     <div class="form-check">
@@ -105,28 +114,78 @@
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" value="2.6 อื่นๆ" name="q2_2_checkbox" id="q2_6">
                         <label class="form-check-label" for="q2_6">2.6 อื่นๆ (โปรดระบุ)</label>
-                        <textarea class="form-control mt-2" rows="1" name="Q2_2_7" placeholder="ระบุการสนับสนุนด้านอื่นๆ"></textarea>
+                        <textarea class="form-control mt-2" rows="1" name="q2_2_others" placeholder="ระบุการสนับสนุนด้านอื่นๆ"></textarea>
                     </div>
                 </div>
             </div>
 
             <div class="form-section">
-                <h2 class="text-warning">📈 Usefulness (การนำไปใช้ประโยชน์)</h2>
+                <h2 class="text-success">✨ Qualitative Attributes</h2>
+                
+                <h4 class="text-warning mt-4 fw-bold">Usefulness (การใช้ประโยชน์)</h4>
                 <p class="fst-italic">จากข้อมูลที่ท่านได้รับ ท่านนำไปใช้ประโยชน์ในด้านใดบ้าง</p>
 
                 <div class="mb-3">
                     <label class="question-label">1. การปรับปรุงระบบการรายงาน (เช่น การแก้ไขความคลาดเคลื่อนในการลงรหัส ICD-10)</label>
-                    <textarea class="form-control" rows="2" name="Q3_1"></textarea>
+                    <textarea class="form-control" rows="2" name="q3_1"></textarea>
                 </div>
                 
                 <div class="mb-3">
                     <label class="question-label">2. การป้องกันควบคุมโรคในโรงพยาบาล (เช่น การตรวจคัดกรองบุคลากร/ผู้ป่วยเรื้อรัง)</label>
-                    <textarea class="form-control" rows="2" name="Q3_2"></textarea>
+                    <textarea class="form-control" rows="2" name="q3_2"></textarea>
                 </div>
                 
                 <div class="mb-3">
                     <label class="question-label">3. การป้องกันโรคในชุมชนในเขตที่โรงพยาบาลรับผิดชอบ</label>
-                    <textarea class="form-control" rows="2" name="Q3_3"></textarea>
+                    <textarea class="form-control" rows="2" name="q3_3"></textarea>
+                </div>
+
+                <h4 class="text-primary mt-5 fw-bold">Simplicity (ความยากง่าย)</h4>
+                
+                <div class="mb-3">
+                    <label class="question-label">1. ท่านคิดว่าขั้นตอนการดำเนินงานเฝ้าระวังโรคไวรัสตับอักเสบบีในภาพรวมของโรงพยาบาลมีความยากง่ายเพียงใด และมีส่วนใดที่ท่านมองว่าเป็นภาระต่อบุคลากรบ้าง</label>
+                    <textarea class="form-control" rows="3" name="q4_1_simplicity_1" placeholder="โปรดระบุปัญหาด้านความยากง่ายและภาระต่อบุคลากร"></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label class="question-label">2. หากมีการลดความซับซ้อนของขั้นตอนการรายงานลงได้ จะส่งผลต่อคุณภาพและความรวดเร็วในการรายงานข้อมูลอย่างไร</label>
+                    <textarea class="form-control" rows="3" name="q4_1_simplicity_2" placeholder="โปรดระบุผลกระทบหากมีการลดความซับซ้อนของขั้นตอน"></textarea>
+                </div>
+                
+                <h4 class="text-danger mt-5 fw-bold">Acceptability (ความยอมรับ)</h4>
+                
+                <div class="mb-3">
+                    <label class="question-label">1. ท่านมีมาตรการหรือนโยบายใดในการสร้างขวัญและกำลังใจ หรือแรงจูงใจ เพื่อให้เจ้าหน้าที่เห็นคุณค่าและอยากมีส่วนร่วมในการรายงานโรคอย่างต่อเนื่อง</label>
+                    <textarea class="form-control" rows="3" name="q4_2_acceptability_1" placeholder="โปรดระบุมาตรการสร้างขวัญและกำลังใจ"></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label class="question-label">2. ท่านเห็นความสำคัญของการสื่อสารและสร้างความตระหนักเกี่ยวกับบทบาทของระบบเฝ้าระวังต่อบุคลากรหรือไม่ และมีการดำเนินการในเรื่องนี้อย่างไรบ้าง</label>
+                    <textarea class="form-control" rows="3" name="q4_2_acceptability_2" placeholder="โปรดระบุการดำเนินการเรื่องการสื่อสารและสร้างความตระหนัก"></textarea>
+                </div>
+                
+                <h4 class="text-info mt-5 fw-bold">Flexibility (ความยืดหยุ่น)</h4>
+                
+                <div class="mb-3">
+                    <label class="question-label">1. หากมีการเปลี่ยนแปลงนโยบาย หรือเพิ่มโรคที่ต้องเฝ้าระวังอย่างเร่งด่วนในอนาคต ท่านคิดว่าระบบการเฝ้าระวังปัจจุบันสามารถปรับตัว หรือรองรับการเปลี่ยนแปลงเหล่านั้นได้รวดเร็วเพียงใด</label>
+                    <textarea class="form-control" rows="3" name="q4_3_flexibility_1" placeholder="โปรดระบุความสามารถในการปรับตัวของระบบต่อการเปลี่ยนแปลงนโยบาย/โรคใหม่"></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label class="question-label">2. ท่านมองเห็นข้อจำกัดด้านทรัพยากร (เช่น งบประมาณ หรือบุคลากร) ที่อาจเป็นอุปสรรคต่อการปรับเปลี่ยนระบบเฝ้าระวังเพื่อรองรับสถานการณ์ใหม่ๆ หรือไม่</label>
+                    <textarea class="form-control" rows="3" name="q4_3_flexibility_2" placeholder="โปรดระบุข้อจำกัดด้านทรัพยากร"></textarea>
+                </div>
+                
+                <h4 class="text-secondary mt-5 fw-bold">Stability (ความมั่นคง)</h4>
+                
+                <div class="mb-3">
+                    <label class="question-label">1. ท่านมีการจัดสรรงบประมาณ และกำลังคน เพื่อให้ระบบเฝ้าระวังนี้สามารถดำเนินงานได้อย่างต่อเนื่องและยั่งยืนในระยะยาวหรือไม่ (เช่น แผนสำรองหากมีบุคลากรลาออก)</label>
+                    <textarea class="form-control" rows="3" name="q4_4_stability_1" placeholder="โปรดระบุมาตรการด้านความมั่นคงของงบประมาณและกำลังคน"></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label class="question-label">2. โรงพยาบาลมีนโยบายในการบำรุงรักษา หรืออัปเดตระบบเทคโนโลยีที่ใช้ในการเฝ้าระวัง (เช่น โปรแกรม 506) อย่างสม่ำเสมอหรือไม่</label>
+                    <textarea class="form-control" rows="3" name="q4_4_stability_2" placeholder="โปรดระบุมาตรการบำรุงรักษาและอัปเดตระบบเทคโนโลยี"></textarea>
                 </div>
             </div>
             
@@ -140,7 +199,7 @@
 
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
 <script src="https://www.gstatic.com/firebasejs/9.1.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.1.1/firebase-firestore-compat.js"></script>
@@ -175,6 +234,15 @@
         data.group = groupName;
         data.timestamp = firebase.firestore.FieldValue.serverTimestamp();
 
+        // จัดการ Checkbox ที่เป็น Array ใน Q2
+        const checkboxValues = [];
+        const checkboxElements = form.querySelectorAll('input[name="q2_2_checkbox"]:checked');
+        checkboxElements.forEach(element => {
+            checkboxValues.push(element.value);
+        });
+        // บันทึก Checkbox เป็น String คั่นด้วย semicolon
+        data.q2_2_checkbox = checkboxValues.join('; '); 
+        
         // แสดงสถานะการส่ง
         const submitButton = form.querySelector('button[type="submit"]');
         submitButton.textContent = 'กำลังส่งข้อมูล...';
